@@ -1,0 +1,4 @@
+{
+    "jwtPrivateKey": "54321",
+    "db": "mongodb+srv://DBuser:Md9Ib4VdexP2N5d4@cluster0.sgfqjcw.mongodb.net/vidly_db?retryWrites=true&w=majority&appName=Cluster0"
+}
