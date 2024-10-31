@@ -1,13 +1,14 @@
-const mongoose = require('mongoose');
-const { Genre } = require('../../../models/genre');
-const { User } = require('../../../models/user');
-const request = require('supertest');
+import appServer from '../../../index.js'
+import mongoose from 'mongoose';
+import { Genre } from '../../../models/genre.js';
+import { User } from '../../../models/user.js';
+import request from 'supertest';
 
 
 describe('/api/genres', () => {
     let server;
 
-    beforeEach(() => { server = require('../../../index'); });
+    beforeEach(() => { server = appServer; });
 
     afterEach(async () => {
         await Genre.deleteMany({});

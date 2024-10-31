@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const { User } = require('../../../models/user');
-const auth = require('../../../middleware/auth');
+import mongoose from 'mongoose';
+import { User } from '../../../models/user.js';
+import auth from '../../../middleware/auth.js';
 
 
 describe('auth middleware', () => {

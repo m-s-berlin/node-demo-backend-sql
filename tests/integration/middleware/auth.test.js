@@ -1,6 +1,7 @@
-const { Genre } = require('../../../models/genre');
-const { User } = require('../../../models/user');
-const request = require('supertest');
+import appServer from '../../../index.js'
+import { Genre } from '../../../models/genre.js';
+import { User } from '../../../models/user.js';
+import request from 'supertest';
 
 
 describe('auth middleware', () => {
@@ -15,7 +16,7 @@ describe('auth middleware', () => {
     }
 
     beforeEach(() => { 
-        server = require('../../../index'); 
+        server = appServer; 
 
         token = new User().generateAuthToken();
     });

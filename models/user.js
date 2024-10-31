@@ -1,8 +1,10 @@
-const Joi = require("joi");
-Joi.objectId = require("joi-objectid")(Joi);
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const config = require('config');
+import Joi from "joi";
+import joiObjectId from "joi-objectid";
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
+import config from "config";
+
+Joi.objectId = joiObjectId(Joi);
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -28,18 +30,16 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-  // console.log("MODELS/USER.JS jwt key:", process.env.VIDLY_JWTPRIVATEKEY);
   const token = jwt.sign(
     { _id: this._id, isAdmin: this.isAdmin },
-    // process.env.VIDLY_JWTPRIVATEKEY
     config.get("jwtPrivateKey")
   );
   return token;
 };
 
-const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
 
-function validateUser(user) {
+export function validateUser(user) {
   const schema = Joi.object({
     name: Joi.string().min(3).max(30).required(),
     email: Joi.string().min(5).max(255).required().email(),
@@ -49,6 +49,3 @@ function validateUser(user) {
 
   return schema.validate(user);
 }
-
-module.exports.User = User;
-module.exports.validateUser = validateUser;

@@ -1,13 +1,12 @@
-const winston = require("winston");
-const mongoose = require("mongoose");
-const config = require("config");
+import winston from "winston";
+import mongoose from "mongoose";
+import config from "config";
 
-module.exports = function () {
-  const db = config.get("db");  // local
+export default function () {
+  const db = config.get("db"); // local
   // const db = process.env.MONGODB_URL;  // cloud
 
   mongoose.connect(db).then(() => {
-    // winston.info(`Connected to ${db}...`);
-    console.log(`Connected to ${db}...`);
+    winston.info(`Connected to ${db}...`);
   });
 };

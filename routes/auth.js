@@ -1,11 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const validate = require("../middleware/validate");
-const Joi = require("joi");
-const { User } = require("../models/user");
-const bcrypt = require("bcrypt");
+import express from "express";
+import validate from "../middleware/validate.js";
+import Joi from "joi";
+import { User } from "../models/user.js";
+import bcrypt from "bcrypt";
 
-router.post("/", validate(validateCredentials), async (req, res) => {
+export const authRouter = express.Router();
+
+authRouter.post("/", validate(validateCredentials), async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Invalid email or password.");
 
@@ -25,5 +26,3 @@ function validateCredentials(body) {
 
   return schema.validate(body);
 }
-
-module.exports = router;

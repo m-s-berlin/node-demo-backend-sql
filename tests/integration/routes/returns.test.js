@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
-const { User } = require('../../../models/user');
-const { Rental } = require('../../../models/rental');
-const { Movie } = require('../../../models/movie');
-const request = require('supertest');
-const moment = require('moment');
+import appServer from '../../../index.js'
+import mongoose from 'mongoose';
+import { User } from '../../../models/user.js';
+import { Rental } from '../../../models/rental.js';
+import { Movie } from '../../../models/movie.js';
+import request from 'supertest';
+import moment from 'moment';
 
 
 describe('POST /api/returns', () => {
@@ -23,7 +24,7 @@ describe('POST /api/returns', () => {
     }
 
     beforeEach(async () => {
-        server = require('../../../index');
+        server = appServer;
 
         customerId = new mongoose.Types.ObjectId();
         movieId = new mongoose.Types.ObjectId();

@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const { User } = require('../../../models/user');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-// const dotenv = require('dotenv').config();
+import mongoose from 'mongoose';
+import { User } from '../../../models/user.js';
+import jwt from 'jsonwebtoken';
+import config from 'config';
 
 
 describe('user.generateAuthToken', () => {
@@ -14,7 +13,7 @@ describe('user.generateAuthToken', () => {
         const user = new User(payload);
         const token = user.generateAuthToken();
         const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
-        // const decoded = jwt.verify(token, process.env.VIDLY_JWTPRIVATEKEY);
+        
         expect(decoded).toMatchObject(payload);
     });
 });
