@@ -1,8 +1,1 @@
-Node.js backend for a fictional video rental store from a Node.js course
-
-routing:    express  
-database:   mongoose  
-validation: joi  
-auth:       jsonwebtokens  
-logging:    winston  
-testing:    jest  
+Same Node demo API as https://github.com/m-s-berlin/node-demo-backend, but made to work with prisma and PostgresSQL instead of mongoose and MongoDB
